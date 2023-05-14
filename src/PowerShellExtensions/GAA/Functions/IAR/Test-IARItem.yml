@@ -1,0 +1,55 @@
+﻿---
+ID: "81a6c2d2-25e8-4d1d-b87b-c6c7ae82c423"
+Parent: "cf4a520f-ef83-4606-b8b8-68eb3804afcf"
+Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
+Path: "/sitecore/system/Modules/PowerShell/Script Library/GAA/Functions/IAR/Test-IARItem"
+SharedFields:
+- ID: "b1a94ff0-6897-47c0-9c51-aa6acb80b1f0"
+  Hint: Script
+  Value: |
+    function Test-IARItem {
+        [CmdletBinding()]
+        param(
+            [Parameter(Mandatory = $true, Position = 0)]
+            [Item]$Item
+        )
+        begin {
+            Write-Verbose "Cmdlet Test-IARItem - Begin"
+        }
+        process {
+            Write-Verbose "Cmdlet Test-IARItem - Process"
+            $masterDb = [Sitecore.Configuration.Factory]::GetDatabase("master")
+            $location = $masterDb.DataManager.DataSource.GetItemLocations($Item.ID)
+            [Sitecore.Data.DataProviders.ItemLocations.AggregatedItemLocationsExtensions]::IsOverridden($location)
+        }
+    
+        end {
+            Write-Verbose "Cmdlet Test-IARItem - End"
+        }
+    }
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230514T051342Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\ghodrat.ashournia@unic.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\ghodrat.ashournia@unic.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "264f8858-07c3-402c-b886-a2d92b748989"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\ghodrat.ashournia@unic.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20230514T064425Z

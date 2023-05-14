@@ -1,0 +1,63 @@
+﻿---
+ID: "eb0e0a88-877e-47b5-932d-57128a38b668"
+Parent: "7abf4068-ab52-4f4b-871d-a508ff85bf9f"
+Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
+Path: /sitecore/system/Modules/PowerShell/Script Library/GAA/Content Editor/Context Menu/IAR Tools/FullReportOverriddenIARs
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: applications/32x32/document_chart.png
+- ID: "1c76313e-3c8c-4807-a826-135d10c39299"
+  Hint: ShowRule
+  Value: |
+    <ruleset>
+      <rule
+        uid="{C2FC9588-0194-479A-88F2-DE720884ABA8}">
+        <conditions>
+          <condition
+            id="{33D5F360-CA8F-4193-AA5A-B52BEA2C84B4}"
+            uid="73DE692D96974C1C93A71A2AA0FD3539" />
+        </conditions>
+      </rule>
+    </ruleset>
+- ID: "b1a94ff0-6897-47c0-9c51-aa6acb80b1f0"
+  Hint: Script
+  Value: |
+    Import-Function Validate-PowerShell
+    Test-PowerShell
+    
+    Try {    
+        Import-Function Get-IARReports
+        $items = Get-ChildItem -Path "/sitecore/templates" -Recurse
+        $items = $items + (Get-ChildItem -Path "/sitecore/System" -Recurse)
+        $items = $items + (Get-ChildItem -Path "/sitecore/layout" -Recurse)
+        $items = $items + (Get-ChildItem -Path "/sitecore/content" -Recurse)
+        Get-IARReports -Items $items
+    }
+    Catch {
+        $ErrorRecord = $Error[0]
+        Write-Log -Log Error $ErrorRecord
+        Show-Alert "Something went wrong. See SPE logs for more details."
+    }
+Languages:
+- Language: en
+  Fields:
+  - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
+    Hint: __Display name
+    Value: "Full Report - Overridden IARs"
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20210501T021226Z
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "e01d3595-3991-4ffd-9a95-2f012030026c"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\ghodrat.ashournia@unic.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20230514T062504Z

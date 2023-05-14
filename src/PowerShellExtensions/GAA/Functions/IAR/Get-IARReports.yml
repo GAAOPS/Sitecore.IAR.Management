@@ -1,0 +1,75 @@
+﻿---
+ID: "023002e2-3451-4d6c-84a0-9f1e004553b8"
+Parent: "cf4a520f-ef83-4606-b8b8-68eb3804afcf"
+Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
+Path: "/sitecore/system/Modules/PowerShell/Script Library/GAA/Functions/IAR/Get-IARReports"
+SharedFields:
+- ID: "b1a94ff0-6897-47c0-9c51-aa6acb80b1f0"
+  Hint: Script
+  Value: |
+    function Get-IARReports {
+        [CmdletBinding()]
+        param(
+            [Parameter(Mandatory = $true, Position = 0)]
+            [Item[]]$Items
+        )
+        begin {
+            Write-Verbose "Cmdlet Invoke-GenerateIARReports - Begin"
+        }
+        process {
+            Write-Verbose "Cmdlet Invoke-GenerateIARReports - Process"
+            $masterDb = [Sitecore.Configuration.Factory]::GetDatabase("master")
+    
+            $itemIds = New-Object "System.Collections.Generic.List[Sitecore.Data.ID]"
+            foreach ($item in $Items) {
+                
+                $itemIds.Add($item.ID)
+            }
+            
+            
+            $overriden = New-Object "System.Collections.Generic.List[Sitecore.Data.Items.Item]"
+            [System.Collections.Generic.ICollection[Sitecore.Data.DataProviders.ItemLocations.AggregatedItemLocations]]$locations = $masterDb.DataManager.DataSource.GetItemLocations($itemIds);
+            foreach ($location in $locations) {
+                if ([Sitecore.Data.DataProviders.ItemLocations.AggregatedItemLocationsExtensions]::IsOverridden($location)) {
+                    $entryId = $itemIds | where { $_ -eq $location.ItemId } | select -first 1
+                    $entry = Get-Item -ID $entryId -Path "master:"
+                    $overriden.add($entry)
+                }
+            }
+            $overriden | Show-ListView -InfoTitle "List of overridden items in database" -MissingDataMessage "No overridden items found!"  -Property `
+            @{Label = "Name"; Expression = { $_.Name } }, 
+            @{Label = "Path"; Expression = { $_.Paths.Path } }, 
+            @{Label = "Id"; Expression = { $_.Id } }
+            
+        }
+                        
+        end {
+            Write-Verbose "Cmdlet Invoke-GenerateIARReports - End"
+        }
+    }
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230514T060604Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\ghodrat.ashournia@unic.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\ghodrat.ashournia@unic.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "86e72169-90b8-4245-b20c-9e2dfe1e12ff"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\ghodrat.ashournia@unic.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20230514T064435Z

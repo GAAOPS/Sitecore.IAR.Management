@@ -1,0 +1,48 @@
+﻿---
+ID: "7abf4068-ab52-4f4b-871d-a508ff85bf9f"
+Parent: "dcc4d06c-17a5-468a-8a1b-0e1b32326852"
+Template: "ab154d3d-1126-4ab4-ac21-8b86e6bd70ea"
+Path: /sitecore/system/Modules/PowerShell/Script Library/GAA/Content Editor/Context Menu/IAR Tools
+SharedFields:
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: Office/32x32/candle_holder.png
+- ID: "613d128b-7bf2-40f4-84cb-6717408f9806"
+  Hint: ShowRule
+  Value: |
+    <ruleset>
+      <rule
+        uid="{8ECB1E27-8609-4DB9-B373-BE93ED0B0627}">
+        <conditions>
+          <condition
+            id="{33D5F360-CA8F-4193-AA5A-B52BEA2C84B4}"
+            uid="6119AC0CB28F4033859EB5B71BAD45BB" />
+        </conditions>
+      </rule>
+    </ruleset>
+Languages:
+- Language: en
+  Versions:
+  - Version: 1
+    Fields:
+    - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
+      Hint: __Created
+      Value: 20230514T053515Z
+    - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
+      Hint: __Owner
+      Value: |
+        sitecore\ghodrat.ashournia@unic.com
+    - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
+      Hint: __Created by
+      Value: |
+        sitecore\ghodrat.ashournia@unic.com
+    - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
+      Hint: __Revision
+      Value: "282f99eb-3694-48db-a031-115ac6f7406b"
+    - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
+      Hint: __Updated by
+      Value: |
+        sitecore\ghodrat.ashournia@unic.com
+    - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
+      Hint: __Updated
+      Value: 20230514T064355Z

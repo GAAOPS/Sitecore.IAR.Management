@@ -1,0 +1,12 @@
+{
+  "namespace": "Powershell.Modules.Extensions",
+  "items": {
+    "includes": [
+      {
+        "name": "PowerShellExtensions",
+        "path": "/sitecore/system/Modules/PowerShell/Script Library/GAA",
+        "scope": "ItemAndDescendants"
+      }      
+    ]
+  }
+}
