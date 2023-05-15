@@ -31,11 +31,6 @@ SharedFields:
         {
             public static string DeleteItemFromDB(Sitecore.Data.Items.Item item)
             {
-                if (item.Database.DataManager.DataEngine.DeleteItem(item))
-                {
-                    return "Success";
-                }
-    
                 string connectionString = Sitecore.Configuration.Settings.GetConnectionString("master");
                 string itemId = item.ID.Guid.ToString();
                 var result = DeleteFields(itemId, connectionString);
